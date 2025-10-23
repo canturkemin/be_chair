@@ -25,8 +25,6 @@ import { getFirestore } from 'firebase/firestore'
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
-import { doc, getDoc } from "firebase/firestore";
-
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
@@ -45,20 +43,3 @@ const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
 export { db }
-
-// Try to read a document
-const testAccess = async () => {
-  try {
-    const ref = doc(db, "test", "testDoc"); // Example path
-    const snap = await getDoc(ref);
-    if (snap.exists()) {
-      console.log("✅ Connected! Document data:", snap.data());
-    } else {
-      console.log("⚠️ Connected, but document does not exist.");
-    }
-  } catch (error) {
-    console.error("❌ Access error:", error.message);
-  }
-};
-
-testAccess();
