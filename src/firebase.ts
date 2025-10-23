@@ -43,3 +43,20 @@ const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
 export { db }
+
+// Try to read a document
+const testAccess = async () => {
+  try {
+    const ref = doc(db, "test", "testDoc"); // Example path
+    const snap = await getDoc(ref);
+    if (snap.exists()) {
+      console.log("✅ Connected! Document data:", snap.data());
+    } else {
+      console.log("⚠️ Connected, but document does not exist.");
+    }
+  } catch (error) {
+    console.error("❌ Access error:", error.message);
+  }
+};
+
+testAccess();
